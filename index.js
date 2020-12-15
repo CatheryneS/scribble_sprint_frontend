@@ -19,7 +19,7 @@ function createNotebook(notebook){
 
     column.className = 'column';
     card.className = 'card';
-    h4Tag.id = `${notebook.attributes.name}`;
+    card.id = `${notebook.id}`;
     card.addEventListener('click', openNotebook);
     h4Tag.innerText = `${notebook.attributes.name}`;
 
@@ -29,10 +29,29 @@ function createNotebook(notebook){
 }
 
 function openNotebook(selection) {
-    // debugger
     const intro = document.getElementById('intro');
     const row = document.getElementById('notebooks');
 
     intro.style.display = "none";
     row.style.display = "none";
+
+    grabPrompt(selection.target.parentElement.id);
+}
+
+function grabPrompt(notebookSelected) {
+    fetch(PROMPTURL + "/" + notebookSelected)
+    .then(resp => resp.json())
+    .then(prompt => showPrompt(prompt))
+}
+
+function showPrompt(prompt) {
+    const section = document.getElementById('prompt')
+    const card = document.createElement('section');
+    const h2Tag = document.createElement('h2');
+
+    card.className = 'prompt-description';
+    h2Tag.innerText = `${prompt.data.attributes.description}`;
+
+    section.appendChild(card);
+    card.appendChild(h2Tag);
 }
