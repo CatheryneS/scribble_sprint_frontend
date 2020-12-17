@@ -64,7 +64,6 @@ function showPrompt(prompt) {
 }
 
 function createStoryForm(prompt) {
-    // debugger
     const section = document.getElementById('story');
     const text = document.createElement('textarea');
 
@@ -72,12 +71,30 @@ function createStoryForm(prompt) {
 }
 
 function showTimer() {
-    // debugger
     const section = document.getElementById('story');
     const timer = document.createElement('h2');
 
-    timer.innerText = "5:00";
     timer.id = "timer";
 
     section.appendChild(timer);
+    startTimer = setInterval(updateTimer, 1000);
+}
+
+const start = 10;
+let time = start * 60;
+
+function updateTimer() {
+    const timer = document.getElementById('timer');
+    const mins = Math.floor(time/60);
+    let secs = time % 60;
+
+    secs = secs < 10 ? '0' + secs : secs;
+
+    timer.innerHTML = `${mins}:${secs}`;
+    time--;
+
+    if (secs == 0 && mins == 0) {
+        clearInterval(startTimer);
+        timer.innerHTML = "Time's Up!"
+    }
 }
