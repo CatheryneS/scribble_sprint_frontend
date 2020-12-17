@@ -31,10 +31,15 @@ function createNotebook(notebook){
 function openNotebook(selection) {
     const intro = document.getElementById('intro');
     const row = document.getElementById('notebooks');
+    const prompt = document.getElementById('prompt');
+    const story = document.getElementById('story');
 
     intro.style.display = "none";
     row.style.display = "none";
+    prompt.style.display = "block";
+    story.style.display = "block";
 
+    showTimer();
     grabPrompt(selection.target.parentElement.id);
 }
 
@@ -54,4 +59,25 @@ function showPrompt(prompt) {
 
     section.appendChild(card);
     card.appendChild(h2Tag);
+
+    createStoryForm(prompt);
+}
+
+function createStoryForm(prompt) {
+    // debugger
+    const section = document.getElementById('story');
+    const text = document.createElement('textarea');
+
+    section.appendChild(text)
+}
+
+function showTimer() {
+    // debugger
+    const section = document.getElementById('story');
+    const timer = document.createElement('h2');
+
+    timer.innerText = "5:00";
+    timer.id = "timer";
+
+    section.appendChild(timer);
 }
