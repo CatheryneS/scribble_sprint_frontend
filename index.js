@@ -65,9 +65,23 @@ function showPrompt(prompt) {
 
 function createStoryForm(prompt) {
     const section = document.getElementById('story');
+    const form = document.createElement('form');
     const text = document.createElement('textarea');
+    const label = document.createElement('label')
+    const title = document.createElement('input');
+    const btn = document.createElement('button');
 
-    section.appendChild(text)
+    form.id = `${prompt.data.id}`;
+    label.innerText = "Title";
+    title.id = "Title";
+    btn.innerText = "Save";
+    btn.addEventListener('submit', saveStory);
+
+    section.appendChild(form);
+    form.appendChild(label);
+    form.appendChild(title);
+    form.appendChild(text);
+    form.appendChild(btn);
 }
 
 function showTimer() {
@@ -97,4 +111,9 @@ function updateTimer() {
         clearInterval(startTimer);
         timer.innerHTML = "Time's Up!"
     }
+}
+
+function saveStory(){
+    debugger
+
 }
