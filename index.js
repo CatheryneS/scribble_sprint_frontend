@@ -16,16 +16,20 @@ function createNotebook(notebook){
     const column = document.createElement('section');
     const card = document.createElement('section');
     const h4Tag = document.createElement('h4');
+    const btn = document.createElement('button');
 
-    column.className = 'column';
+    column.className = 'notebook';
     card.className = 'card';
-    card.id = `${notebook.id}`;
+    card.dataset.id = `${notebook.id}`;
     card.addEventListener('click', openNotebook);
     h4Tag.innerText = `${notebook.attributes.name}`;
+    btn.innerText = "View All Stories Inside";
+    btn.addEventListener('click', readNotebook);
 
     card.appendChild(h4Tag);
     row.appendChild(column);
     column.appendChild(card);
+    column.appendChild(btn);
 }
 
 function openNotebook(selection) {
@@ -133,10 +137,10 @@ function saveStory(e){
         })
     })
     .then(resp => resp.json())
-    .then(obj => renderStory(obj));
+    .then(obj => renderStoryPage(obj));
 }
 
-function renderStory(storyObj) {
+function renderStoryPage(storyObj) {
     const prompt = document.getElementById('prompt');
     const storySect = document.getElementById('story');
     const timer = document.getElementById('timer');
@@ -144,9 +148,14 @@ function renderStory(storyObj) {
     const h1Tag = document.createElement('h1');
     const pTag = document.createElement('p');
 
-    prompt.remove();
-    timer.remove();
-    form.remove();
+    if (prompt && timer && form) {
+        prompt.remove();
+        timer.remove();
+        form.remove();
+    } else {
+        document.getElementById('notebook-index').remove();
+        storySect.style.display = "block";
+    }
 
     h1Tag.className = "story-title";
     pTag.className = "story-content";
@@ -157,4 +166,45 @@ function renderStory(storyObj) {
     storySect.appendChild(h1Tag);
     storySect.appendChild(pTag);
     
+}
+
+function readNotebook(notebook) {
+    const intro = document.getElementById('intro');
+    const row = document.getElementById('notebooks');
+
+    intro.style.display = "none";
+    row.style.display = "none";
+
+    getStories(notebook.target.previousSibling.dataset.id);
+}
+
+function getStories(notebookId){
+    fetch(NOTEBOOKURL + "/" + notebookId)
+    .then(resp => resp.json())
+    .then(notebook => notebook.data.attributes.stories.forEach(createIndex))
+}
+
+function createIndex(story) {
+    const index = document.getElementById('notebook-index');
+    const ulTag = document.createElement('ul');
+    const liTag = document.createElement('li');
+    const btn = document.createElement('button');
+
+    ulTag.className = "Titles";
+    liTag.className = "Title";
+    liTag.innerText = `${story.title}`;
+    btn.innerText = "Read Story";
+    btn.dataset.id = `${story.id}`;
+    btn.addEventListener('click', getStory);
+
+    index.appendChild(ulTag);
+    ulTag.appendChild(liTag);
+    liTag.appendChild(btn);
+}   
+
+function getStory(story){
+    const id = story.target.dataset.id;
+    fetch(STORYURL + "/" + id)
+    .then(resp => resp.json())
+    .then(obj => renderStoryPage(obj))
 }
