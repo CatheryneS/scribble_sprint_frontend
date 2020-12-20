@@ -3,16 +3,7 @@ const NOTEBOOKURL = BASEURL + "notebooks"
 const PROMPTURL = BASEURL + "prompts"
 const STORYURL = BASEURL + "stories"
 
-function getNotebooks(){
-    fetch(NOTEBOOKURL)
-    .then(resp => resp.json())
-    .then(notebooks => {notebooks.data.forEach(notebook => {
-        let newNotebook = new Notebook(notebook.id, notebook.attributes);
-        newNotebook.createNotebook();
-    })})
-}
-
-getNotebooks()
+const app = new App();
 
 function openNotebook(selection) {
     const intro = document.getElementById('intro');
