@@ -26,13 +26,15 @@ function openNotebook(selection) {
     story.style.display = "block";
 
     showTimer();
-    grabPrompt(selection.target.parentElement.dataset.id);
+    grabPromptBasedOnNotebook(selection.target.parentElement.dataset.id);
 }
 
-function grabPrompt(notebookSelected) {
+function grabPromptBasedOnNotebook(notebookSelected) {
     fetch(PROMPTURL + "/" + notebookSelected)
     .then(resp => resp.json())
-    .then(prompt => showPrompt(prompt))
+    .then(prompt => {
+        showPrompt(prompt)
+    })
 }
 
 function showPrompt(prompt) {
