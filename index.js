@@ -8,33 +8,11 @@ function getNotebooks(){
     .then(resp => resp.json())
     .then(notebooks => {notebooks.data.forEach(notebook => {
         let newNotebook = new Notebook(notebook.id, notebook.attributes);
-        // debugger
-        createNotebook(notebook)
+        newNotebook.createNotebook();
     })})
 }
 
 getNotebooks()
-
-function createNotebook(notebook){
-    const row = document.getElementById('notebooks');
-    const column = document.createElement('section');
-    const card = document.createElement('section');
-    const h4Tag = document.createElement('h4');
-    const btn = document.createElement('button');
-
-    column.className = 'notebook';
-    card.className = 'card';
-    card.dataset.id = `${notebook.id}`;
-    card.addEventListener('click', openNotebook);
-    h4Tag.innerText = `${notebook.attributes.name}`;
-    btn.innerText = "View All Stories Inside";
-    btn.addEventListener('click', readNotebook);
-
-    card.appendChild(h4Tag);
-    row.appendChild(column);
-    column.appendChild(card);
-    column.appendChild(btn);
-}
 
 function openNotebook(selection) {
     const intro = document.getElementById('intro');
