@@ -6,7 +6,11 @@ const STORYURL = BASEURL + "stories"
 function getNotebooks(){
     fetch(NOTEBOOKURL)
     .then(resp => resp.json())
-    .then(notebooks => notebooks.data.forEach(createNotebook))
+    .then(notebooks => {notebooks.data.forEach(notebook => {
+        let newNotebook = new Notebook(notebook.id, notebook.attributes);
+        // debugger
+        createNotebook(notebook)
+    })})
 }
 
 getNotebooks()
