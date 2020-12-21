@@ -38,12 +38,12 @@ class Story {
         btn1.dataset.id = this.notebook_id;
         btn1.innerText = "View all stories";
         btn1.addEventListener('click', e => {
-            removeStory();
+            this.removeStory();
             this.getStories();
         });
         btn2.innerText = "Pick another notebook";
         btn2.addEventListener('click', e => {
-            removeStory();
+            this.removeStory();
             showNotebooks();
         });
     
@@ -55,7 +55,7 @@ class Story {
         storySect.appendChild(pTag);
         storySect.appendChild(btn1);
         storySect.appendChild(btn2);
-    }
+    };
 
     getStories() {
         this.nb_adapter.fetchAllStories(this.notebook_id)
@@ -65,7 +65,7 @@ class Story {
                 nb.createIndex(story)
             }
         })
-    }
+    };
 
     static getStory() {
         let adapter = new StoriesAdapter()
@@ -74,5 +74,13 @@ class Story {
             let newStory = new Story(story.data);
             newStory.renderStoryPage();
         })
-    }
+    };
+
+    removeStory() {
+        document.getElementById('story').style.display = "none";
+        document.getElementsByClassName('story-title')[0].remove();
+        document.getElementsByClassName('story-content')[0].remove();
+        document.querySelector("#story > button:nth-child(1)").remove();
+        document.querySelector("#story > button").remove();
+    };
 }
