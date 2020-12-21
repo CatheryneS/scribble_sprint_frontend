@@ -19,4 +19,9 @@ class StoriesAdapter {
         .then(resp => resp.json());
     }
 
+    fetchStory(storyId){
+        return fetch(`${this.endPoint}/${storyId}`)
+        .then(resp => resp.json())
+    }
+
 }

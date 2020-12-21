@@ -66,4 +66,13 @@ class Story {
             }
         })
     }
+
+    static getStory() {
+        let adapter = new StoriesAdapter()
+        adapter.fetchStory(this)
+        .then(story => {
+            let newStory = new Story(story.data);
+            newStory.renderStoryPage();
+        })
+    }
 }

@@ -1,8 +1,3 @@
-const BASEURL = "http://localhost:3000/api/v1/"
-const NOTEBOOKURL = BASEURL + "notebooks"
-const PROMPTURL = BASEURL + "prompts"
-const STORYURL = BASEURL + "stories"
-
 const app = new App();
 
 const start = 1;
@@ -14,15 +9,6 @@ function removeStory() {
     document.getElementsByClassName('story-content')[0].remove();
     document.querySelector("#story > button:nth-child(1)").remove();
     document.querySelector("#story > button").remove();
-}
-
-function getStory(story){
-    const id = story.target.dataset.id;
-
-    fetch(STORYURL + "/" + id)
-    .then(resp => resp.json())
-    .then(obj => {
-        renderStoryPage(obj)})
 }
 
 function showNotebooks() {

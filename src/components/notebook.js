@@ -38,7 +38,7 @@ class Notebook {
         liTag.innerText = `${story.title}`;
         btn.innerText = "Read Story";
         btn.dataset.id = `${story.id}`;
-        btn.addEventListener('click', getStory);
+        btn.addEventListener('click', Story.getStory.bind(story.id))
     
         index.appendChild(ulTag);
         ulTag.appendChild(liTag);
