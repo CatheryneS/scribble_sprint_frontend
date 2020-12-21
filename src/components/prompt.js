@@ -1,6 +1,7 @@
 class Prompt {
     constructor(prompt) {
-        this.description = prompt.description 
+        this.id = prompt.id
+        this.description = prompt.attributes.description 
     }
 
     showPrompt() {
@@ -13,7 +14,7 @@ class Prompt {
     
         section.appendChild(card);
         card.appendChild(h2Tag);
-    
-        createStoryForm(prompt);
+
+        app.createStoryForm.bind(this)();
     }
 }

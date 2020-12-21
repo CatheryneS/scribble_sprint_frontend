@@ -7,7 +7,7 @@ class PromptGenerator {
     grabPrompt() {
         this.adapter.grabPromptBasedOnNotebook(this.relatedNotebookId)
         .then(prompt => {
-            let chosenPrompt = new Prompt(prompt.data.attributes);
+            let chosenPrompt = new Prompt(prompt.data);
             chosenPrompt.showPrompt();
         })
     }
