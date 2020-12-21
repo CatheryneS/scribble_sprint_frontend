@@ -4,43 +4,29 @@ const PROMPTURL = BASEURL + "prompts"
 const STORYURL = BASEURL + "stories"
 
 const app = new App();
+// app.openNotebook();
 
-function openNotebook(selection) {
-    const intro = document.getElementById('intro');
-    const row = document.getElementById('notebooks');
-    const prompt = document.getElementById('prompt');
-    const story = document.getElementById('story');
+// function grabPromptBasedOnNotebook(notebookSelected) {
+//     fetch(PROMPTURL + "/" + notebookSelected)
+//     .then(resp => resp.json())
+//     .then(prompt => {
+//         showPrompt(prompt)
+//     })
+// }
 
-    intro.style.display = "none";
-    row.style.display = "none";
-    prompt.style.display = "block";
-    story.style.display = "block";
+// function showPrompt(prompt) {
+//     const section = document.getElementById('prompt')
+//     const card = document.createElement('section');
+//     const h2Tag = document.createElement('h2');
 
-    showTimer();
-    grabPromptBasedOnNotebook(selection.target.parentElement.dataset.id);
-}
+//     card.className = 'prompt-description';
+//     h2Tag.innerText = `${prompt.data.attributes.description}`;
 
-function grabPromptBasedOnNotebook(notebookSelected) {
-    fetch(PROMPTURL + "/" + notebookSelected)
-    .then(resp => resp.json())
-    .then(prompt => {
-        showPrompt(prompt)
-    })
-}
+//     section.appendChild(card);
+//     card.appendChild(h2Tag);
 
-function showPrompt(prompt) {
-    const section = document.getElementById('prompt')
-    const card = document.createElement('section');
-    const h2Tag = document.createElement('h2');
-
-    card.className = 'prompt-description';
-    h2Tag.innerText = `${prompt.data.attributes.description}`;
-
-    section.appendChild(card);
-    card.appendChild(h2Tag);
-
-    createStoryForm(prompt);
-}
+//     createStoryForm(prompt);
+// }
 
 function createStoryForm(prompt) {
     const section = document.getElementById('story');

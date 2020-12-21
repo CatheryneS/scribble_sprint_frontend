@@ -11,5 +11,6 @@ class Notebooks {
             notebooks.data.forEach(notebook => this.notebooks.push(new Notebook(notebook.id, notebook.attributes)));
         })
         .then(() => this.notebooks.forEach(notebook => notebook.createNotebook()))
-    }
+    };
+
 }

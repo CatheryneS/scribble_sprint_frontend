@@ -3,7 +3,6 @@ class Notebook {
         this.id = id
         this.name = notebookAttr.name
         this.stories = notebookAttr.stories
-        Notebook.all.push(this)
     }
 
     createNotebook(){
@@ -16,7 +15,7 @@ class Notebook {
         column.className = 'notebook-container';
         card.className = 'notebook-card';
         card.dataset.id = `${this.id}`;
-        card.addEventListener('click', openNotebook);
+        card.addEventListener('click', app.openNotebook.bind(this));
         h4Tag.innerText = `${this.name}`;
         btn.innerText = "View All Stories Inside";
         btn.addEventListener('click', readNotebook);
@@ -27,5 +26,3 @@ class Notebook {
         column.appendChild(btn);
     }
 };
-
-Notebook.all = [];
