@@ -14,12 +14,12 @@ class App {
         prompt.style.display = "block";
         story.style.display = "block";
 
-        showTimer();
         let generator = new PromptGenerator(this); 
         generator.grabPrompt(this.id);
+        app.showTimer();
     };
 
-    createStoryForm() {
+    buildStoryForm() {
         const section = document.getElementById('story');
         const form = document.createElement('form');
         const text = document.createElement('textarea');
@@ -41,5 +41,16 @@ class App {
         form.appendChild(title);
         form.appendChild(text);
         form.appendChild(btn);
-    }
+    };
+
+    showTimer() {
+        const section = document.getElementById('story');
+        const timer = document.createElement('h2');
+    
+        timer.id = "timer";
+    
+        section.appendChild(timer);
+        setInterval(updateTimer, 1000);
+    };
+
 }

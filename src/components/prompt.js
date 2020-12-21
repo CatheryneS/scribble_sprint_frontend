@@ -15,6 +15,6 @@ class Prompt {
         section.appendChild(card);
         card.appendChild(h2Tag);
 
-        app.createStoryForm.bind(this)();
+        app.buildStoryForm.bind(this)();
     }
 }

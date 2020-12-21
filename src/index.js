@@ -5,16 +5,6 @@ const STORYURL = BASEURL + "stories"
 
 const app = new App();
 
-function showTimer() {
-    const section = document.getElementById('story');
-    const timer = document.createElement('h2');
-
-    timer.id = "timer";
-
-    section.appendChild(timer);
-    startTimer = setInterval(updateTimer, 1000);
-}
-
 const start = 10;
 let time = start * 60;
 
