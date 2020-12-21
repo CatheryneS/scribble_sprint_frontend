@@ -5,26 +5,8 @@ const STORYURL = BASEURL + "stories"
 
 const app = new App();
 
-const start = 10;
+const start = 1;
 let time = start * 60;
-
-function updateTimer() {
-    const timer = document.getElementById('timer');
-    if (timer){
-        const mins = Math.floor(time/60);
-        let secs = time % 60;
-
-        secs = secs < 10 ? '0' + secs : secs;
-
-        timer.innerHTML = `${mins}:${secs}`;
-        time--;
-
-        if (secs == 0 && mins == 0) {
-            clearInterval(startTimer);
-            timer.innerHTML = "Time's Up!"
-        }
-    }
-}
 
 function saveStory(e){
     e.preventDefault();

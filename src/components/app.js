@@ -50,7 +50,26 @@ class App {
         timer.id = "timer";
     
         section.appendChild(timer);
-        setInterval(updateTimer, 1000);
+        this.startTimer = setInterval(app.updateTimer, 1000);
     };
+
+    updateTimer() {
+        const timer = document.getElementById('timer');
+        if (timer){
+            const mins = Math.floor(time/60);
+            let secs = time % 60;
+    
+            secs = secs < 10 ? '0' + secs : secs;
+    
+            timer.innerHTML = `${mins}:${secs}`;
+            time--;
+    
+            if (secs == 0 && mins == 0) {
+                clearInterval(app.startTimer);
+                timer.innerHTML = "Time's Up!"
+            }
+        }
+    }
+    
 
 }
