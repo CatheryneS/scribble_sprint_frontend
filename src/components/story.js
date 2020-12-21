@@ -6,6 +6,7 @@ class Story {
         this.promptId = story.attributes.prompt.id
         this.notebook_id = story.attributes.prompt.notebook_id
         this.adapter = new StoriesAdapter()
+        this.nb_adapter = new NotebooksAdapter()
     };
 
     renderStoryPage() {
@@ -38,7 +39,7 @@ class Story {
         btn1.innerText = "View all stories";
         btn1.addEventListener('click', e => {
             removeStory();
-            getStories(this.notebook_id);
+            this.getStories();
         });
         btn2.innerText = "Pick another notebook";
         btn2.addEventListener('click', e => {
@@ -54,5 +55,15 @@ class Story {
         storySect.appendChild(pTag);
         storySect.appendChild(btn1);
         storySect.appendChild(btn2);
+    }
+
+    getStories() {
+        this.nb_adapter.fetchAllStories(this.notebook_id)
+        .then(notebook => {
+            let nb = new Notebook(notebook.data.id, notebook.data.attributes);
+            for (let story of nb.stories) {
+                nb.createIndex(story)
+            }
+        })
     }
 }

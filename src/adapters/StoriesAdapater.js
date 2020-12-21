@@ -18,4 +18,5 @@ class StoriesAdapter {
         })
         .then(resp => resp.json());
     }
+
 }
