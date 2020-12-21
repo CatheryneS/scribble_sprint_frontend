@@ -34,7 +34,11 @@ class App {
         text.id = "story-area";
         btn.innerText = "Save";
         btn.type = "submit";
-        form.addEventListener('submit', saveStory);
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let newStory = new Story(e.target);
+            newStory.saveAndLoadStory();
+        });
     
         section.appendChild(form);
         form.appendChild(label);
@@ -71,5 +75,4 @@ class App {
         }
     }
     
-
 }

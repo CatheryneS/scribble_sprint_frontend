@@ -8,23 +8,6 @@ const app = new App();
 const start = 1;
 let time = start * 60;
 
-function saveStory(e){
-    e.preventDefault();
-    fetch(STORYURL,{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify({
-            title: e.target.children[1].value,
-            content: e.target.children[2].value,
-            prompt_id: e.target.dataset.id
-        })
-    })
-    .then(resp => resp.json())
-    .then(obj => renderStoryPage(obj));
-}
 
 function renderStoryPage(storyObj) {
     const prompt = document.getElementById('prompt');
