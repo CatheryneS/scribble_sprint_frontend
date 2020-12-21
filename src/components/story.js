@@ -44,7 +44,7 @@ class Story {
         btn2.innerText = "Pick another notebook";
         btn2.addEventListener('click', e => {
             this.removeStory();
-            showNotebooks();
+            app.showNotebooks();
         });
     
     
