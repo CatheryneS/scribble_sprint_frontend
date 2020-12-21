@@ -4,29 +4,7 @@ const PROMPTURL = BASEURL + "prompts"
 const STORYURL = BASEURL + "stories"
 
 const app = new App();
-// app.openNotebook();
 
-// function grabPromptBasedOnNotebook(notebookSelected) {
-//     fetch(PROMPTURL + "/" + notebookSelected)
-//     .then(resp => resp.json())
-//     .then(prompt => {
-//         showPrompt(prompt)
-//     })
-// }
-
-// function showPrompt(prompt) {
-//     const section = document.getElementById('prompt')
-//     const card = document.createElement('section');
-//     const h2Tag = document.createElement('h2');
-
-//     card.className = 'prompt-description';
-//     h2Tag.innerText = `${prompt.data.attributes.description}`;
-
-//     section.appendChild(card);
-//     card.appendChild(h2Tag);
-
-//     createStoryForm(prompt);
-// }
 
 function createStoryForm(prompt) {
     const section = document.getElementById('story');
