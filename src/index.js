@@ -16,42 +16,6 @@ function removeStory() {
     document.querySelector("#story > button").remove();
 }
 
-function readNotebook(notebook) {
-    const intro = document.getElementById('intro');
-    const row = document.getElementById('notebooks');
-
-    intro.style.display = "none";
-    row.style.display = "none";
-
-    getStories(notebook.target.previousSibling.dataset.id);
-}
-
-function getStories(notebookId){
-    fetch(NOTEBOOKURL + "/" + notebookId)
-    .then(resp => resp.json())
-    .then(notebook => notebook.data.attributes.stories.forEach(createIndex))
-    .catch(error => {return "No stories have been written"})
-}
-
-function createIndex(story) {
-    const index = document.getElementById('notebook-index');
-    const ulTag = document.createElement('ul');
-    const liTag = document.createElement('li');
-    const btn = document.createElement('button');
-
-    index.style.display = "block";
-    ulTag.className = "Titles";
-    liTag.className = "Title";
-    liTag.innerText = `${story.title}`;
-    btn.innerText = "Read Story";
-    btn.dataset.id = `${story.id}`;
-    btn.addEventListener('click', getStory);
-
-    index.appendChild(ulTag);
-    ulTag.appendChild(liTag);
-    liTag.appendChild(btn);
-}   
-
 function getStory(story){
     const id = story.target.dataset.id;
 

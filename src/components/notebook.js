@@ -18,11 +18,30 @@ class Notebook {
         card.addEventListener('click', app.openNotebook.bind(this));
         h4Tag.innerText = `${this.name}`;
         btn.innerText = "View All Stories Inside";
-        btn.addEventListener('click', readNotebook);
+        btn.addEventListener('click', app.hideNotebooks.bind(this));
     
         card.appendChild(h4Tag);
         row.appendChild(column);
         column.appendChild(card);
         column.appendChild(btn);
     }
+
+    createIndex(story) {
+        const index = document.getElementById('notebook-index');
+        const ulTag = document.createElement('ul');
+        const liTag = document.createElement('li');
+        const btn = document.createElement('button');
+    
+        index.style.display = "block";
+        ulTag.className = "Titles";
+        liTag.className = "Title";
+        liTag.innerText = `${story.title}`;
+        btn.innerText = "Read Story";
+        btn.dataset.id = `${story.id}`;
+        btn.addEventListener('click', getStory);
+    
+        index.appendChild(ulTag);
+        ulTag.appendChild(liTag);
+        liTag.appendChild(btn);
+    }; 
 };

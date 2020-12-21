@@ -47,6 +47,18 @@ class App {
         form.appendChild(btn);
     };
 
+    hideNotebooks() {
+        const intro = document.getElementById('intro');
+        const row = document.getElementById('notebooks');
+    
+        intro.style.display = "none";
+        row.style.display = "none";
+    
+        for (let story of this.stories) {
+            this.createIndex(story)
+        }
+    };
+
     showTimer() {
         const section = document.getElementById('story');
         const timer = document.createElement('h2');
