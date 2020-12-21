@@ -8,55 +8,6 @@ const app = new App();
 const start = 1;
 let time = start * 60;
 
-
-function renderStoryPage(storyObj) {
-    const prompt = document.getElementById('prompt');
-    const storySect = document.getElementById('story');
-    const timer = document.getElementById('timer');
-    const form = document.getElementById('story-form');
-    const h1Tag = document.createElement('h1');
-    const pTag = document.createElement('p');
-    const btn1 = document.createElement('button');
-    const btn2 = document.createElement('button');
-
-    if (prompt && timer && form) {
-        prompt.remove();
-        timer.remove();
-        form.remove();
-    } else {
-        document.getElementById('notebook-index').style.display = "none";
-        let title = document.getElementsByClassName('Titles');
-
-        while(title[0]) {
-            title[0].parentNode.removeChild(title[0]);
-        }
-        storySect.style.display = "block";
-    }
-
-    h1Tag.className = "story-title";
-    pTag.className = "story-content";
-    btn1.dataset.id = `${storyObj.data.attributes.prompt.notebook_id}`;
-    btn1.innerText = "View all stories";
-    btn1.addEventListener('click', e => {
-        removeStory();
-        getStories(storyObj.data.attributes.prompt.notebook_id);
-    });
-    btn2.innerText = "Pick another notebook";
-    btn2.addEventListener('click', e => {
-        removeStory();
-        showNotebooks();
-    });
-
-
-    h1Tag.innerText = storyObj.data.attributes.title;
-    pTag.innerText = storyObj.data.attributes.content;
-
-    storySect.appendChild(h1Tag);
-    storySect.appendChild(pTag);
-    storySect.appendChild(btn1);
-    storySect.appendChild(btn2);
-}
-
 function removeStory() {
     document.getElementById('story').style.display = "none";
     document.getElementsByClassName('story-title')[0].remove();
@@ -106,7 +57,8 @@ function getStory(story){
 
     fetch(STORYURL + "/" + id)
     .then(resp => resp.json())
-    .then(obj => renderStoryPage(obj))
+    .then(obj => {
+        renderStoryPage(obj)})
 }
 
 function showNotebooks() {

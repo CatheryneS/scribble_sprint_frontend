@@ -36,7 +36,7 @@ class App {
         btn.type = "submit";
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            let newStory = new Story(e.target);
+            let newStory = new Stories(e.target);
             newStory.saveAndLoadStory();
         });
     
