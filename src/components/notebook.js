@@ -45,23 +45,20 @@ class Notebook {
 
     createIndex(story) {
         const index = document.getElementById('notebook-index');
-        const ulTag = document.createElement('ul');
+        const ulTag = document.getElementById('story-list');
         const liTag = document.createElement('li');
         const btn = document.createElement('button');
         const title = document.getElementById('notebook-title');
         
         index.style.display = "block";
         title.innerText = this.name;
-        ulTag.className = "list-group";
-        ulTag.id = "story-list";
         liTag.className = "list-group-item float-sm-left font-weight-bold";
         liTag.innerText = `${story.title}`;
         btn.innerText = "Read Story";
         btn.dataset.id = `${story.id}`;
-        btn.className = "btn btn btn-outline-info btn-sm float-sm-right";
+        btn.className = "btn btn-outline-info btn-sm float-sm-right";
         btn.addEventListener('click', Story.getStory.bind(story.id));
     
-        index.appendChild(ulTag);
         ulTag.appendChild(liTag);
         liTag.appendChild(btn);
     }; 
