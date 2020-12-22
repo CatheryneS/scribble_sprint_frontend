@@ -23,17 +23,22 @@ class App {
         const section = document.getElementById('story');
         const form = document.createElement('form');
         const text = document.createElement('textarea');
-        const label = document.createElement('label')
         const title = document.createElement('input');
         const btn = document.createElement('button');
     
+        form.className = "form-group";
+        text.className = "form-control";
+        text.rows = '5';
         form.dataset.id = `${this.id}`;
         form.id = "story-form";
         title.id = "Title";
         title.type = "text";
+        title.placeholder = "Name your entry";
         text.id = "story-area";
+        text.placeholder = "Let the story begin..."
         btn.innerText = "Save";
         btn.type = "submit";
+        btn.className = "btn btn-outline-secondary";
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             let newStory = new Stories(e.target);
@@ -41,7 +46,6 @@ class App {
         });
     
         section.appendChild(form);
-        form.appendChild(label);
         form.appendChild(title);
         form.appendChild(text);
         form.appendChild(btn);
@@ -50,10 +54,10 @@ class App {
     hideNotebooks() {
         const intro = document.getElementById('intro');
         const row = document.getElementById('notebooks');
-    
+        
         intro.style.display = "none";
         row.style.display = "none";
-    
+
         for (let story of this.stories) {
             this.createIndex(story)
         }
@@ -65,7 +69,7 @@ class App {
         const story = document.getElementById('story');
     
         intro.style.display = "block";
-        row.style.display = "block";
+        row.style.display = "";
         story.style.display = "none";
     }
 
