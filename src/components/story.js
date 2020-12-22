@@ -18,30 +18,28 @@ class Story {
         const pTag = document.createElement('p');
         const btn1 = document.createElement('button');
         const btn2 = document.createElement('button');
-    
+
         if (prompt && timer && form) {
             prompt.remove();
             timer.remove();
             form.remove();
         } else {
             document.getElementById('notebook-index').style.display = "none";
-            let title = document.getElementsByClassName('Titles');
-    
-            while(title[0]) {
-                title[0].parentNode.removeChild(title[0]);
-            }
+            document.getElementById('story-list').remove();
             storySect.style.display = "block";
         }
     
         h1Tag.className = "story-title";
         pTag.className = "story-content";
         btn1.dataset.id = this.notebook_id;
+        btn1.className ="btn btn-outline-secondary";
         btn1.innerText = "View all stories";
         btn1.addEventListener('click', e => {
             this.removeStory();
             this.getStories();
         });
         btn2.innerText = "Pick another notebook";
+        btn2.className = "btn btn-outline-secondary";
         btn2.addEventListener('click', e => {
             this.removeStory();
             app.showNotebooks();
