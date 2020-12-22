@@ -25,7 +25,12 @@ class Story {
             form.remove();
         } else {
             document.getElementById('notebook-index').style.display = "none";
-            document.getElementById('story-list').remove();
+            let list = document.getElementById('story-list');
+            
+            while(list.children[0]) {	
+                list.children[0].remove();	
+            }
+
             storySect.style.display = "block";
         }
     
