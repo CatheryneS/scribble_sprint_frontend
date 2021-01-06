@@ -96,7 +96,11 @@ class App {
     
             if (secs == 0 && mins == 0) {
                 clearInterval(app.startTimer);
-                timer.innerHTML = "Time's Up!"
+                timer.innerHTML = "Time's Up! Add a title and hit save.";
+                let story = document.getElementById('story-area');
+                story.disabled = true;
+            } else if (secs == 0 && mins == 5) {
+                alert("You have 5 minutes left! No pressure though.")
             }
         }
     }

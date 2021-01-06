@@ -24,14 +24,15 @@ class Notebook {
         
         imgTag.className = "card-img";
         imgTag.src = this.image;
-        pTag.className = "card-text p-3 mb-2 bg-secondary text-white";
+        pTag.className = "card-text p-3 mb-2 bg-light text-dark";
         pTag.innerText = this.instruction;
         sect.className = "card-img-overlay";
-        h4Tag.className = "card-title p-3 mb-2 bg-secondary text-white rounded";
+        h4Tag.className = "card-title p-3 mb-2 bg-dark text-white";
         h4Tag.style.textAlign = "center"
         h4Tag.innerText = `${this.name}`;
         btn.innerText = "View All Stories Inside";
-        btn.className = "btn btn-secondary"
+        btn.className = "btn btn-block"
+        btn.style.backgroundColor = "lightblue"
         btn.addEventListener('click', app.hideNotebooks.bind(this));
     
         card.appendChild(imgTag);
