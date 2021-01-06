@@ -1,6 +1,6 @@
 class StoriesAdapter {
     constructor() {
-        this.endPoint = "http://localhost:3000/api/v1/stories"
+        this.endPoint = "https://scribble-sprint-api.herokuapp.com/api/v1/stories"
     }
 
     saveStoryToDatabase(story){

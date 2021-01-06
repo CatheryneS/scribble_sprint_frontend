@@ -1,6 +1,6 @@
 class NotebooksAdapter {
     constructor() {
-        this.endPoint = "http://localhost:3000/api/v1/notebooks"
+        this.endPoint = "https://scribble-sprint-api.herokuapp.com/api/v1/notebooks"
     }
 
     getNotebooks(){

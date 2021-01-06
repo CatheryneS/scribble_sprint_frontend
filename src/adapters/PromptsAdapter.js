@@ -1,6 +1,6 @@
 class PromptsAdapter {
     constructor() {
-        this.endPoint = "http://localhost:3000/api/v1/prompts"
+        this.endPoint = "https://scribble-sprint-api.herokuapp.com/api/v1/prompts"
     }
 
     grabPromptBasedOnNotebook(notebookId){
